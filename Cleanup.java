@@ -1,0 +1,1 @@
+import org.apache.zookeeper.*; public class Cleanup { public static void main(String[] args) throws Exception { ZooKeeper zk = new ZooKeeper("cssmpi5:2181", 5000, null); Thread.sleep(1000); try { zk.delete("/workers", -1); } catch(Exception e) {} try { zk.delete("/tasks", -1); } catch(Exception e) {} zk.close(); }}
