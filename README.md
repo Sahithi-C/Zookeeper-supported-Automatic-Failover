@@ -4,6 +4,8 @@
 
 This project uses Zookeeper to implement an automatic failover mechanism in a master-worker distributed execution of graph-bridge programs. Client.java, (i.e., the master) connects to ZooKeeper; submits 10 different tasks, each executing GraphBride.java with a different graph size; and waits for all tasks to be completed by remote worker processes. Each worker which should be implemented in Worker.java joins Zookeeper; repetitively starts a new task; and fails over a task if it is not done within 100 seconds. Distributed synchronization must be implemented in Key.java to have all the workers access the bag of tasks exclusively.
 
+<img width="515" alt="image" src="https://github.com/user-attachments/assets/f41e9169-02e7-41f1-8dbd-aeef1792e854" />
+
 ## Documentation:
 
 **Client.java** - Connects to ZooKeeper at a given TCP port in args[0], creates the /workers and the /tasks nodes persistently; submits 10 tasks under /tasks where each task has “submitted” as its data and is identified with task-000000000d where d = 1, 2, …, 10; launches 10 event watchers, each checking a task deletion from /tasks; and finally deletes /workers and /tasks from ZooKeeper upon no more tasks under /tasks.  
